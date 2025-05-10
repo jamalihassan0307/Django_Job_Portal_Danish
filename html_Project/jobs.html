@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - JobPortal</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/App.css">
+    <link rel="stylesheet" href="css/components/NavBar.css">
+    <link rel="stylesheet" href="css/components/JobCard.css">
+    <link rel="stylesheet" href="css/pages/Jobs.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- NavBar Component -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <span class="brand-icon">💼</span>
+                        <span class="brand-text">JobPortal</span>
+                    </a>
+                </div>
+
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+
+                <div class="nav-menu">
+                    <div class="nav-links">
+                        <a href="index.html" class="nav-link">
+                            <span class="nav-icon">🏠</span>
+                            <span>Home</span>
+                        </a>
+                        <a href="jobs.html" class="nav-link active">
+                            <span class="nav-icon">🔍</span>
+                            <span>Find Jobs</span>
+                        </a>
+                        <a href="about.html" class="nav-link">
+                            <span class="nav-icon">ℹ️</span>
+                            <span>About</span>
+                        </a>
+                        <a href="contact.html" class="nav-link">
+                            <span class="nav-icon">📞</span>
+                            <span>Contact</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-search">
+                        <input type="text" placeholder="Search jobs..." class="search-input">
+                    </div>
+
+                    <div class="nav-auth">
+                        <a href="login.html" class="login-btn">Login</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Content will be loaded here dynamically -->
+        </main>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/components/NavBar.js"></script>
+    <script src="js/components/JobCard.js"></script>
+    <script src="js/pages/Jobs.js"></script>
+    <script src="js/App.js"></script>
+</body>
+</html> 
