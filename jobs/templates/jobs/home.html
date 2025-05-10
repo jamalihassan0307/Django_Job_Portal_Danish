@@ -10,6 +10,7 @@
 {% block content %}
 <div class="home-container">
     <section class="hero-section">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Find Your Dream Job</h1>
             <p>Search through thousands of job listings and find the perfect match for your skills and aspirations.</p>
@@ -35,12 +36,16 @@
     <section class="featured-jobs">
         <div class="section-header">
             <h2>Featured Jobs</h2>
+            <p>Discover the most exciting opportunities from top companies</p>
             <a href="{% url 'jobs' %}" class="view-all-btn">View All Jobs</a>
         </div>
         <div class="jobs-grid">
             {% for job in featured_jobs %}
             <div class="job-card">
                 <div class="job-header">
+                    <div class="company-logo">
+                        <img src="https://ui-avatars.com/api/?name={{ job.company }}&background=random" alt="{{ job.company }} Logo">
+                    </div>
                     <h3>{{ job.job_title }}</h3>
                     <span class="company">{{ job.company }}</span>
                 </div>
@@ -52,29 +57,15 @@
                 <div class="job-description">
                     <p>{{ job.description|truncatewords:20 }}</p>
                 </div>
-                <a href="{% url 'job_detail' job.id %}" class="view-job-btn">View Details</a>
+                <a href="{% url 'jobs' %}" class="view-job-btn">View Details</a>
             </div>
             {% endfor %}
         </div>
     </section>
 
-    <section class="categories">
-        <div class="section-header">
-            <h2>Popular Categories</h2>
-        </div>
-        <div class="categories-grid">
-            {% for category in categories %}
-            <div class="category-card">
-                <span class="category-icon">{{ category.icon }}</span>
-                <h3>{{ category.name }}</h3>
-                <p>{{ category.job_count }} jobs available</p>
-                <a href="{% url 'jobs' %}?type={{ category.name }}" class="category-link">Browse Jobs</a>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
 
     <section class="cta-section">
+        <div class="cta-overlay"></div>
         <div class="cta-content">
             <h2>Ready to Find Your Next Opportunity?</h2>
             <p>Join thousands of job seekers who have found their dream jobs through JobPortal.</p>

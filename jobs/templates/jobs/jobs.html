@@ -38,11 +38,7 @@
     </div>
 
     <div class="jobs-main">
-        {% if user.is_authenticated %}
-        <div class="admin-controls">
-            <a href="{% url 'add_job' %}" class="add-job-btn">Post a Job</a>
-        </div>
-        {% endif %}
+       
 
         <div class="jobs-grid">
             {% if jobs %}
@@ -60,15 +56,7 @@
                     <div class="job-description">
                         <p>{{ job.description|truncatewords:30 }}</p>
                     </div>
-                    <div class="job-footer">
-                        <a href="{% url 'job_detail' job.id %}" class="view-job-btn">View Details</a>
-                        {% if user.is_authenticated and user == job.created_by %}
-                        <div class="admin-actions">
-                            <a href="{% url 'edit_job' job.id %}" class="edit-btn">Edit</a>
-                            <a href="{% url 'delete_job' job.id %}" class="delete-btn">Delete</a>
-                        </div>
-                        {% endif %}
-                    </div>
+                   
                 </div>
                 {% endfor %}
             {% else %}
