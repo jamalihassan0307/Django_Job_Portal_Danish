@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Django_Job_Portal_Danish.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'jobs/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
