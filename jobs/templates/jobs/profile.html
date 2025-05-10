@@ -1,0 +1,74 @@
+{% extends 'jobs/base.html' %}
+{% load static %}
+
+{% block title %}Profile - JobPortal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/Profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-cover">
+            <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cover Image">
+        </div>
+        <div class="profile-info">
+            <div class="profile-avatar">
+                <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=random" alt="Profile Avatar">
+            </div>
+            <div class="profile-details">
+                <h1>{{ user.username }}</h1>
+                <p class="email">{{ user.email }}</p>
+                <p class="join-date">Member since {{ user.date_joined|date:"F Y" }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <div class="profile-section">
+            <h2>Personal Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Username</span>
+                    <span class="value">{{ user.username }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Email</span>
+                    <span class="value">{{ user.email }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">First Name</span>
+                    <span class="value">{{ user.first_name|default:"Not set" }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Last Name</span>
+                    <span class="value">{{ user.last_name|default:"Not set" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h2>Account Settings</h2>
+            <div class="settings-grid">
+                <a href="#" class="settings-card">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Edit Profile</span>
+                </a>
+                <a href="#" class="settings-card">
+                    <i class="fas fa-lock"></i>
+                    <span>Change Password</span>
+                </a>
+                <a href="#" class="settings-card">
+                    <i class="fas fa-bell"></i>
+                    <span>Notification Settings</span>
+                </a>
+                <a href="#" class="settings-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Privacy Settings</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
