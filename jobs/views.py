@@ -6,38 +6,20 @@ from django.db.models import Q
 from .models import Job, User, ContactDetail
 
 def home(request):
-    featured_jobs = Job.objects.all().order_by('-created_at')[:6]
-    categories = [
-        {'name': 'Full-time', 'icon': '💼', 'job_count': Job.objects.filter(job_type='Full-time').count()},
-        {'name': 'Part-time', 'icon': '⏰', 'job_count': Job.objects.filter(job_type='Part-time').count()},
-        {'name': 'Remote', 'icon': '🌍', 'job_count': Job.objects.filter(job_type='Remote').count()},
-    ]
-    return render(request, 'jobs/home.html', {
-        'featured_jobs': featured_jobs,
-        'categories': categories
-    })
+    featured_jobs = Job.objects.all()[:6]
+    return render(request, 'jobs/home.html', {'featured_jobs': featured_jobs})
 
 def jobs_list(request):
     jobs = Job.objects.all()
-    job_type = request.GET.get('type', 'All')
     search_query = request.GET.get('search', '')
-
+    job_type = request.GET.get('type', 'All')
+    
+    if search_query:
+        jobs = jobs.filter(job_title__icontains=search_query)
     if job_type != 'All':
         jobs = jobs.filter(job_type=job_type)
     
-    if search_query:
-        jobs = jobs.filter(
-            Q(job_title__icontains=search_query) |
-            Q(company__icontains=search_query) |
-            Q(location__icontains=search_query) |
-            Q(description__icontains=search_query)
-        )
-
-    return render(request, 'jobs/jobs.html', {
-        'jobs': jobs,
-        'job_type': job_type,
-        'search_query': search_query
-    })
+    return render(request, 'jobs/jobs.html', {'jobs': jobs})
 
 def job_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
@@ -50,10 +32,19 @@ def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
+        subject = request.POST.get('subject')
         message = request.POST.get('message')
-        # Here you would typically save the contact message to a database
+        
+        ContactDetail.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+        
         messages.success(request, 'Your message has been sent successfully!')
         return redirect('contact')
+    
     return render(request, 'jobs/contact.html')
 
 def login_view(request):
@@ -64,7 +55,7 @@ def login_view(request):
         
         if user is not None:
             login(request, user)
-            messages.success(request, 'Successfully logged in!')
+            messages.success(request, 'Welcome back!')
             return redirect('home')
         else:
             messages.error(request, 'Invalid username or password.')
@@ -74,19 +65,30 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
-    messages.success(request, 'Successfully logged out!')
+    messages.success(request, 'You have been logged out successfully.')
     return redirect('home')
 
 @login_required
 def profile(request):
-    user = request.user
+    return render(request, 'jobs/profile.html')
+
+@login_required
+def edit_profile(request):
     if request.method == 'POST':
-        user.name = request.POST.get('name', user.name)
-        user.email = request.POST.get('email', user.email)
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        
+        user = request.user
+        user.username = username
+        user.first_name = first_name
+        user.last_name = last_name
         user.save()
+        
         messages.success(request, 'Profile updated successfully!')
         return redirect('profile')
-    return render(request, 'jobs/profile.html', {'user': user})
+    
+    return render(request, 'jobs/edit_profile.html')
 
 @login_required
 def add_job(request):
