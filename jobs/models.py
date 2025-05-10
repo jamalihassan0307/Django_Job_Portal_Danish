@@ -39,11 +39,11 @@ class Job(models.Model):
         return self.job_title
 
 class ContactDetail(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    subject = models.CharField(max_length=255)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField(max_length=255, null=True, blank=True)
+    subject = models.CharField(max_length=255, null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f"Message from {self.name}"
+        return f"Message from {self.name if self.name else 'Anonymous'}"
