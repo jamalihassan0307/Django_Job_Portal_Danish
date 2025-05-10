@@ -9,114 +9,48 @@
 
 {% block content %}
 <div class="jobs-container">
-    <div class="filters-sidebar">
-        <div class="filter-section">
-            <h3>Job Type</h3>
-            <div class="filter-options">
-                {% for type in job_types %}
-                <label class="filter-option">
-                    <input type="checkbox" name="job_type" value="{{ type.id }}">
-                    <span>{{ type.name }}</span>
-                </label>
-                {% endfor %}
+    <div class="jobs-header">
+        <h1>Find Your Dream Job</h1>
+        <form method="GET" action="{% url 'jobs' %}" class="search-form">
+            <div class="search-inputs">
+                <input type="text" name="search" placeholder="Job title, company, or keywords" value="{{ search_query }}">
+                <select name="type" class="job-type-select">
+                    <option value="All" {% if job_type == 'All' %}selected{% endif %}>All Types</option>
+                    <option value="Full-time" {% if job_type == 'Full-time' %}selected{% endif %}>Full-time</option>
+                    <option value="Part-time" {% if job_type == 'Part-time' %}selected{% endif %}>Part-time</option>
+                    <option value="Contract" {% if job_type == 'Contract' %}selected{% endif %}>Contract</option>
+                    <option value="Freelance" {% if job_type == 'Freelance' %}selected{% endif %}>Freelance</option>
+                    <option value="Remote" {% if job_type == 'Remote' %}selected{% endif %}>Remote</option>
+                </select>
+                <button type="submit" class="search-btn">Search</button>
             </div>
-        </div>
-
-        <div class="filter-section">
-            <h3>Experience Level</h3>
-            <div class="filter-options">
-                {% for level in experience_levels %}
-                <label class="filter-option">
-                    <input type="checkbox" name="experience" value="{{ level.id }}">
-                    <span>{{ level.name }}</span>
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="filter-section">
-            <h3>Salary Range</h3>
-            <div class="filter-options">
-                {% for range in salary_ranges %}
-                <label class="filter-option">
-                    <input type="checkbox" name="salary" value="{{ range.id }}">
-                    <span>{{ range.name }}</span>
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <button class="apply-filters-btn">Apply Filters</button>
+        </form>
     </div>
 
-    <div class="jobs-content">
-        <div class="jobs-header">
-            <h2>Available Jobs</h2>
-            <div class="jobs-sort">
-                <label for="sort-select">Sort by:</label>
-                <select id="sort-select">
-                    <option value="newest">Newest</option>
-                    <option value="salary_high">Salary: High to Low</option>
-                    <option value="salary_low">Salary: Low to High</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="jobs-grid">
+    <div class="jobs-grid">
+        {% if jobs %}
             {% for job in jobs %}
             <div class="job-card">
                 <div class="job-header">
-                    <h3>{{ job.title }}</h3>
+                    <h3>{{ job.job_title }}</h3>
                     <span class="company">{{ job.company }}</span>
                 </div>
                 <div class="job-details">
                     <span class="location">📍 {{ job.location }}</span>
                     <span class="salary">💰 {{ job.salary }}</span>
-                    <span class="type">📋 {{ job.job_type }}</span>
+                    <span class="job-type">{{ job.job_type }}</span>
                 </div>
                 <div class="job-description">
                     <p>{{ job.description|truncatewords:30 }}</p>
                 </div>
-                <div class="job-tags">
-                    {% for tag in job.tags.all %}
-                    <span class="tag">{{ tag.name }}</span>
-                    {% endfor %}
-                </div>
-                <div class="job-footer">
-                    <span class="posted-date">Posted {{ job.created_at|timesince }} ago</span>
-                    <a href="{% url 'job_detail' job.id %}" class="view-job-btn">View Details</a>
-                </div>
+                <a href="{% url 'job_detail' job.id %}" class="view-job-btn">View Details</a>
             </div>
-            {% empty %}
+            {% endfor %}
+        {% else %}
             <div class="no-jobs">
                 <p>No jobs found matching your criteria.</p>
             </div>
-            {% endfor %}
-        </div>
-
-        {% if jobs.has_other_pages %}
-        <div class="pagination">
-            {% if jobs.has_previous %}
-            <a href="?page={{ jobs.previous_page_number }}" class="page-link">&laquo; Previous</a>
-            {% endif %}
-
-            {% for num in jobs.paginator.page_range %}
-            {% if jobs.number == num %}
-            <span class="page-link active">{{ num }}</span>
-            {% else %}
-            <a href="?page={{ num }}" class="page-link">{{ num }}</a>
-            {% endif %}
-            {% endfor %}
-
-            {% if jobs.has_next %}
-            <a href="?page={{ jobs.next_page_number }}" class="page-link">Next &raquo;</a>
-            {% endif %}
-        </div>
         {% endif %}
     </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script src="{% static 'js/pages/Jobs.js' %}"></script>
 {% endblock %} 
