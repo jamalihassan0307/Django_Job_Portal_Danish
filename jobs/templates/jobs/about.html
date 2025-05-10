@@ -1,4 +1,5 @@
 {% extends 'jobs/base.html' %}
+{% load static %}
 
 {% block title %}About Us - JobPortal{% endblock %}
 
@@ -8,87 +9,38 @@
 
 {% block content %}
 <div class="about-container">
-    <section class="about-hero">
-        <div class="hero-content">
-            <h1>About JobPortal</h1>
-            <p>Connecting talented professionals with their dream opportunities</p>
-        </div>
-    </section>
+    <div class="about-content">
+        <h1>About JobPortal</h1>
+        <p class="subtitle">Connecting talent with opportunity</p>
 
-    <section class="mission-section">
-        <div class="mission-content">
+        <div class="mission-section">
             <h2>Our Mission</h2>
-            <p>At JobPortal, we're dedicated to revolutionizing the job search experience. Our platform connects talented professionals with their dream opportunities, making the job search process more efficient and enjoyable.</p>
+            <p>At JobPortal, we're dedicated to making the job search process easier and more efficient for both job seekers and employers. Our platform connects talented professionals with their dream jobs while helping companies find the perfect candidates.</p>
         </div>
-    </section>
 
-    <section class="features-section">
-        <h2>Why Choose JobPortal?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <span class="feature-icon">🎯</span>
                 <h3>Smart Matching</h3>
-                <p>Our advanced algorithm matches your skills and preferences with the perfect job opportunities.</p>
+                <p>Our advanced algorithm matches candidates with the most suitable job opportunities based on their skills and preferences.</p>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">🔒</span>
                 <h3>Secure Platform</h3>
-                <p>Your data is protected with industry-leading security measures and privacy controls.</p>
+                <p>We prioritize the security and privacy of our users' data, ensuring a safe environment for job searching and recruitment.</p>
             </div>
             <div class="feature-card">
-                <span class="feature-icon">📱</span>
-                <h3>Mobile Friendly</h3>
-                <p>Search and apply for jobs on the go with our responsive mobile platform.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">💼</span>
-                <h3>Verified Employers</h3>
-                <p>All companies on our platform are verified to ensure legitimate opportunities.</p>
+                <span class="feature-icon">📈</span>
+                <h3>Career Growth</h3>
+                <p>We provide resources and tools to help professionals advance their careers and achieve their goals.</p>
             </div>
         </div>
-    </section>
 
-    <section class="team-section">
-        <h2>Our Team</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="{% static 'images/team/member1.jpg' %}" alt="Team Member">
-                <h3>John Doe</h3>
-                <p>Founder & CEO</p>
-            </div>
-            <div class="team-member">
-                <img src="{% static 'images/team/member2.jpg' %}" alt="Team Member">
-                <h3>Jane Smith</h3>
-                <p>Head of Operations</p>
-            </div>
-            <div class="team-member">
-                <img src="{% static 'images/team/member3.jpg' %}" alt="Team Member">
-                <h3>Mike Johnson</h3>
-                <p>Technical Lead</p>
-            </div>
+        <div class="team-section">
+            <h2>Our Team</h2>
+            <p>We're a diverse team of professionals passionate about revolutionizing the job search experience. Our expertise spans technology, human resources, and career development.</p>
         </div>
-    </section>
-
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">10K+</span>
-                <p>Active Jobs</p>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">5K+</span>
-                <p>Companies</p>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">50K+</span>
-                <p>Job Seekers</p>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">95%</span>
-                <p>Success Rate</p>
-            </div>
-        </div>
-    </section>
+    </div>
 </div>
 {% endblock %}
 
