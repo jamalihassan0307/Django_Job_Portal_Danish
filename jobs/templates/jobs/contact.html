@@ -1,0 +1,98 @@
+{% extends 'jobs/base.html' %}
+
+{% block title %}Contact Us - JobPortal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/Contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>We're here to help and answer any questions you might have</p>
+        </div>
+    </section>
+
+    <div class="contact-content">
+        <div class="contact-info">
+            <div class="info-card">
+                <span class="info-icon">📍</span>
+                <h3>Our Location</h3>
+                <p>123 Job Street</p>
+                <p>Tech City, TC 12345</p>
+            </div>
+            <div class="info-card">
+                <span class="info-icon">📞</span>
+                <h3>Phone Number</h3>
+                <p>+1 (555) 123-4567</p>
+                <p>Mon-Fri, 9am-6pm</p>
+            </div>
+            <div class="info-card">
+                <span class="info-icon">✉️</span>
+                <h3>Email Address</h3>
+                <p>support@jobportal.com</p>
+                <p>info@jobportal.com</p>
+            </div>
+        </div>
+
+        <div class="contact-form-container">
+            <h2>Send us a Message</h2>
+            <form method="post" class="contact-form">
+                {% csrf_token %}
+                {% if form.errors %}
+                <div class="error-message">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="id_name">Your Name</label>
+                    <input type="text" name="name" id="id_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_email">Email Address</label>
+                    <input type="email" name="email" id="id_email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_subject">Subject</label>
+                    <input type="text" name="subject" id="id_subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_message">Message</label>
+                    <textarea name="message" id="id_message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-section">
+        <h2>Find Us</h2>
+        <div class="map-container">
+            <!-- Replace with your actual map embed code -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30591910525!2d-74.25986432970718!3d40.697149422113014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564750987!5m2!1sen!2s"
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/pages/Contact.js' %}"></script>
+{% endblock %} 

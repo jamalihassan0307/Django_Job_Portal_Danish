@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .models import Job, ContactDetail, User, Role
+from jobs.models import Job
 from django.db.models import Q
 
 def home(request):

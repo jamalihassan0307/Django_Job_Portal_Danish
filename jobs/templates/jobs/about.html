@@ -1,0 +1,97 @@
+{% extends 'jobs/base.html' %}
+
+{% block title %}About Us - JobPortal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/About.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1>About JobPortal</h1>
+            <p>Connecting talented professionals with their dream opportunities</p>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>At JobPortal, we're dedicated to revolutionizing the job search experience. Our platform connects talented professionals with their dream opportunities, making the job search process more efficient and enjoyable.</p>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Why Choose JobPortal?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>Smart Matching</h3>
+                <p>Our advanced algorithm matches your skills and preferences with the perfect job opportunities.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>Secure Platform</h3>
+                <p>Your data is protected with industry-leading security measures and privacy controls.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3>Mobile Friendly</h3>
+                <p>Search and apply for jobs on the go with our responsive mobile platform.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💼</span>
+                <h3>Verified Employers</h3>
+                <p>All companies on our platform are verified to ensure legitimate opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="{% static 'images/team/member1.jpg' %}" alt="Team Member">
+                <h3>John Doe</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="{% static 'images/team/member2.jpg' %}" alt="Team Member">
+                <h3>Jane Smith</h3>
+                <p>Head of Operations</p>
+            </div>
+            <div class="team-member">
+                <img src="{% static 'images/team/member3.jpg' %}" alt="Team Member">
+                <h3>Mike Johnson</h3>
+                <p>Technical Lead</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">10K+</span>
+                <p>Active Jobs</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5K+</span>
+                <p>Companies</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">50K+</span>
+                <p>Job Seekers</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">95%</span>
+                <p>Success Rate</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/pages/About.js' %}"></script>
+{% endblock %} 

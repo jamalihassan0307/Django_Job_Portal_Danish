@@ -6,6 +6,7 @@
     <title>{% block title %}JobPortal{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/App.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/NavBar.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/JobCard.css' %}">
     {% block extra_css %}{% endblock %}
@@ -55,7 +56,7 @@
                             <a href="{% url 'profile' %}" class="login-btn">Profile</a>
                             <a href="{% url 'logout' %}" class="login-btn">Logout</a>
                         {% else %}
-                            <a href="{% url 'login' %}" class="login-btn">Login</a>
+                            <a href="{% url 'login' %}" class="login-btn {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a>
                         {% endif %}
                     </div>
                 </div>
@@ -72,5 +73,6 @@
     <script src="{% static 'js/components/NavBar.js' %}"></script>
     <script src="{% static 'js/components/JobCard.js' %}"></script>
     {% block extra_js %}{% endblock %}
+    <script src="{% static 'js/App.js' %}"></script>
 </body>
 </html> 
