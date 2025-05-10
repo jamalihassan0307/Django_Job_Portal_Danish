@@ -10,7 +10,7 @@ class Role(models.Model):
 class User(AbstractUser):
     name = models.CharField(max_length=100)
     profile_picture = models.CharField(max_length=255, null=True, blank=True)
-    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.username
@@ -30,6 +30,7 @@ class Job(models.Model):
     location = models.CharField(max_length=255)
     job_type = models.CharField(max_length=100, choices=JOB_TYPES)
     salary = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
