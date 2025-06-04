@@ -34,6 +34,15 @@
             </div>
             <button type="submit" class="login-button">Login</button>
         </form>
+
+        <div class="social-container">
+            <button class="google-btn">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
+                    <img src="https://www.google.com/favicon.ico" alt="Google">
+                    Sign in with Google
+                </a>
+            </button>
+        </div>
     </div>
 </div>
 {% endblock %}
